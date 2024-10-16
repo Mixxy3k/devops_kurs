@@ -1,0 +1,9 @@
+name: Automation
+on:
+  push: 
+    branches:
+    - production
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
