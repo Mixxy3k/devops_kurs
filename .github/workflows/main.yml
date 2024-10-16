@@ -7,3 +7,20 @@ on:
     branches:
     - main
   workflow_dispatch:
+
+jobs:
+  build:
+    name: test&deploy
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Github
+      uses: actions/checkout@v4
+    - name: Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-versiob: "18.19.1"
+        
+    - name: Instalacja dependencji
+      run: npm install
+    - name: Uruchamianie testów
+      run: npm test
