@@ -1,26 +1,40 @@
 name: Automation
 on:
-  push: 
+  push:
     branches:
-    - production
+      - production
   pull_request:
     branches:
-    - main
+      - main
   workflow_dispatch:
 
 jobs:
   build:
-    name: test&deploy
+    name: test
     runs-on: ubuntu-22.04
     steps:
-    - name: Github
-      uses: actions/checkout@v4
-    - name: Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-versiob: "18.19.1"
-        
-    - name: Instalacja dependencji
-      run: npm install
-    - name: Uruchamianie testów
-      run: npm test
+      - name: Github
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-versiob: "18.19.1"
+
+      - name: Instalacja dependencji
+        run: npm install
+      - name: Uruchamianie testów
+        run: npm test
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 20.215.200.155
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
+          server-dir: www/

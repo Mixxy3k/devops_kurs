@@ -7,6 +7,6 @@ describe("/test - Enpdoint", () => {
   it("Wynik testu", async () => {
     const response = await request.get("/test");
     expect(response.status).toBe(200);
-    expect(response.text).toBe("Hello World!");
+    expect(response.text).toBe("OwO");
   });
 });
