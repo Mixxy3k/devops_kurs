@@ -26,6 +26,7 @@ jobs:
         run: npm test
   web-deploy:
     name: 🎉 Deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
